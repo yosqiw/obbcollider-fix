@@ -100,3 +100,6 @@ type = "required"
 versionRange = "[6.0.10,)"
 ordering = "AFTER"
 side = "BOTH"
+
+[[mixins]]
+config="obbcollider_fix.mixins.json"
