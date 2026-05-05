@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.yowils.obbcolliderfix.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "obbcollider_fix.refmap.json",
+  "mixins": [
+    "ContinuousOBBColliderMixin"
+  ],
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
