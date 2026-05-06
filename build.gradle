@@ -58,10 +58,10 @@ neoForge {
     // Specify the version of NeoForge to use.
     version = project.neo_version
 
-    parchment {
-        mappingsVersion = project.parchment_mappings_version
-        minecraftVersion = project.parchment_minecraft_version
-    }
+    //parchment {
+     //   mappingsVersion = project.parchment_mappings_version
+     //   minecraftVersion = project.parchment_minecraft_version
+    //}
 
     // This line is optional. Access Transformers are automatically detected
     // accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
@@ -135,23 +135,15 @@ configurations {
 }
 
 dependencies {
-    // Required dependencies
-    jarJar(api("com.tterrag.registrate:Registrate:$registrate_version"))
-
-    compileOnlyApi("dev.engine-room.flywheel:flywheel-neoforge-api-$minecraft_version:$flywheel_version")
-    jarJar(runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-$minecraft_version:$flywheel_version") {
-        version {
-            strictly "[${flywheel_version},2.0)"
-            prefer flywheel_version
-        }
-    })
-
-    jarJar(api("net.createmod.ponder:ponder-neoforge:$ponder_version+mc$minecraft_version") {
-        version {
-            strictly "[$ponder_version+mc$minecraft_version,)"
-            prefer "$ponder_version+mc$minecraft_version"
-        }
-    })
+    implementation "net.neoforged:neoforge:${neo_version}"
+    
+    // The mod we're patching
+    compileOnly "com.simibubi.create:create-${minecraft_version}:${create_version}"
+    
+    // Create's compile-time API dependencies
+    compileOnly "dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}"
+    compileOnly "net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}"
+    compileOnly "com.tterrag.registrate:Registrate:${registrate_version}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
